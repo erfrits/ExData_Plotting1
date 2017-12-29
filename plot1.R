@@ -25,6 +25,9 @@ pData <- read.csv("household_power_consumption.txt", header = T, sep = ";") %>%
 
 # Creating the output
 # ======================
+# change locale temporary to English
+loc <- Sys.getlocale("LC_TIME")
+Sys.setlocale("LC_TIME","C")
 # initialize the device
 png(file="plot1.png")
 # create the histogram
@@ -39,7 +42,9 @@ dev.off()
 
 # Cleaning up
 # ===========
+# reset locale
+Sys.setlocale("LC_TIME",loc)
 # reset the working directory
 setwd(orig_wd)
 # remove data
-rm(pData, new_wd, orig_wd)
+rm(pData, new_wd, orig_wd,loc)

@@ -27,6 +27,9 @@ pData <- pData[complete.cases(pData),]
 
 # Creating the output
 # ======================
+# change locale temporary to English
+loc <- Sys.getlocale("LC_TIME")
+Sys.setlocale("LC_TIME","C")
 # initialize the device
 png(file="plot2.png")
 # create the plot
@@ -42,7 +45,9 @@ dev.off()
 
 # Cleaning up
 # ===========
+# reset locale
+Sys.setlocale("LC_TIME",loc)
 # reset the working directory
 setwd(orig_wd)
 # remove data
-rm(pData, new_wd, orig_wd)
+rm(pData, new_wd, orig_wd,loc)
